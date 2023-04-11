@@ -1,11 +1,11 @@
 create database homework1;
 use homework1;
 create table mobile_phone (
-  id int primary key not null,
-  product_name varchar(45) not null unique,
-  manufacturer varchar(45) not null,
+  id            int primary key not null,
+  product_name  varchar(45) not null unique,
+  manufacturer  varchar(45) not null,
   product_count int not null,
-  price int not null
+  price         int not null
 );
 insert
   mobile_phone (
@@ -21,9 +21,9 @@ values
   (3, 'Galaxy S9', 'Samsung', 2, 56000),
   (4, 'Galaxy S8', 'Samsung', 1, 41000),
   (5, 'P20 PRO', 'Huawei', 5, 36000);
-  /* Выведите название, производителя и цену для товаров, количество которых
-         превышает 2 (SQL - файл, скриншот, либо сам код)
-       */
+
+/* Выведите название, производителя и цену для товаров, количество которых
+превышает 2 (SQL - файл, скриншот, либо сам код) */
 use homework1;
 select
   manufacturer,
@@ -32,6 +32,7 @@ from
   mobile_phone
 where
   product_count > 2;
+
 -- Выведите весь ассортимент товаров марки “Samsung”
 select
   id,
@@ -43,11 +44,11 @@ from
   mobile_phone
 where
   manufacturer = 'Samsung';
-  /* *** С помощью регулярных выражений найти:
-      	4.1. Товары, в которых есть упоминание "Iphone"
-      	4.2. "Samsung"
-      	4.3.  Товары, в которых есть ЦИФРА "8"
-       */
+
+/* *** С помощью регулярных выражений найти:
+    - Товары, в которых есть упоминание "Iphone"
+    - "Samsung"
+    - Товары, в которых есть ЦИФРА "8" */
 select
   id,
   product_name,
@@ -58,6 +59,7 @@ from
   mobile_phone
 where
   product_name like '%iphone%';
+
 select
   id,
   product_name,
@@ -68,6 +70,7 @@ from
   mobile_phone
 where
   manufacturer like '%samsung%';
+
 select
   id,
   product_name,
