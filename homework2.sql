@@ -71,3 +71,4 @@ select
   end as full_order_status
 from
   orders;
+
