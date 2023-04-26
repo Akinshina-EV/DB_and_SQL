@@ -1,3 +1,3 @@
 # DB_and_SQL
 Данный репозиторий содержит пример запросов на языке SQL к базам данных 
-MySQL и PostgreSQL
+MySQL и PostgreSQL.
