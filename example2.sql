@@ -1,15 +1,13 @@
-drop database if exists homework2;
-create database if not exists homework2;
-ALTER DATABASE homework2 CHARACTER SET utf8 COLLATE utf8_general_ci;
-use homework2;
-# Используя операторы языка SQL, создайте табличку “sales”.
+drop database if exists db2;
+create database if not exists db2;
+ALTER DATABASE db2 CHARACTER SET utf8 COLLATE utf8_general_ci;
+use db2;
 drop table if exists sales;
 create table if not exists sales (
   id int primary key auto_increment,
   order_date date not null,
   count_product int not null
 );
-# Заполните ее данными
 insert into
   sales (order_date, count_product)
 values
@@ -18,7 +16,7 @@ values
   ('2022-01-03', 21),
   ('2022-01-04', 124),
   ('2022-01-05', 341);
-# Для данных таблицы “sales” укажите тип заказа в зависимости от кол-ва :
+# Для данных таблицы “sales” укажем тип заказа в зависимости от кол-ва :
   # меньше 100  -    Маленький заказ
   # от 100 до 300 - Средний заказ
   # больше 300  -     Большой заказ
@@ -36,7 +34,7 @@ select
   ) as 'Тип заказа'
 from
   sales;
-# Создайте таблицу “orders”, заполните ее значениями.
+
   drop table if exists orders;
 create table if not exists orders (
     id int primary key auto_increment,
@@ -52,12 +50,11 @@ values
   ('e05', 100.70, 'CLOSED'),
   ('e02', 22.18, 'OPEN'),
   ('e04', 9.50, 'CANCELLED');
-# Выберите все заказы.
 select
   *
 from
   orders;
-# В зависимости от поля order_status выведите столбец
+# В зависимости от поля order_status выведем столбец
   # full_order_status:
   # OPEN – «Order is in open state» ;
   # CLOSED - «Order is closed»;
