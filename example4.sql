@@ -3,32 +3,32 @@ SET
 SET
   CHARACTER SET 'utf8';
 
-DROP DATABASE IF EXISTS homework4;
-CREATE DATABASE IF NOT EXISTS homework4;
-ALTER DATABASE homework4 CHARACTER SET utf8 COLLATE utf8_general_ci;
+DROP DATABASE IF EXISTS db4;
+CREATE DATABASE IF NOT EXISTS db4;
+ALTER DATABASE db4 CHARACTER SET utf8 COLLATE utf8_general_ci;
 
-USE homework4;
-CREATE TABLE `shops` (
-    `id` INT,
-    `shopname` VARCHAR (100),
+USE db4;
+CREATE TABLE shops (
+    id INT,
+    shopname VARCHAR (100),
     PRIMARY KEY (id)
   );
-CREATE TABLE `cats` (
+CREATE TABLE cats (
     `name` VARCHAR (100),
-    `id` INT,
+    id INT,
     PRIMARY KEY (id),
     shops_id INT,
-    CONSTRAINT fk_cats_shops_id FOREIGN KEY (shops_id) REFERENCES `shops` (id)
+    CONSTRAINT fk_cats_shops_id FOREIGN KEY (shops_id) REFERENCES shops (id)
   );
 INSERT INTO
-  `shops`
+  shops
 VALUES
   (1, 'Четыре лапы'),
   (2, 'Мистер Зоо'),
   (3, 'МурзиЛЛа'),
   (4, 'Кошки и собаки');
 INSERT INTO
-  `cats`
+  cats
 VALUES
   ('Murzik', 1, 1),
   ('Nemo', 2, 2),
@@ -74,7 +74,6 @@ DROP TABLE IF EXISTS Orders;
 CREATE TABLE Orders (
     ord_id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     ord_datetime DATETIME,
-    -- 'YYYY-MM-DD hh:mm:ss'
     ord_an INT,
     FOREIGN KEY (ord_an) REFERENCES Analysis (an_id) ON DELETE CASCADE ON UPDATE CASCADE
   );
@@ -111,10 +110,7 @@ VALUES
   ('2020-02-12 07:20:19', 3),
   ('2020-02-12 07:35:38', 1);
 
-# Используя JOIN-ы, выполните следующие операции:
-
-  # 1.Вывести всех котиков по магазинам по id
-  # (условие соединения shops.id = cats.shops_id)
+  # Выведем всех котиков по магазинам по id
 SELECT
   c.name,
   s.shopname
@@ -122,8 +118,7 @@ FROM
   cats c
   LEFT JOIN shops s on s.id = c.shops_id;
 
-# 2.Вывести магазин, в котором продается кот “Мурзик”
-  # (попробуйте выполнить 2 способами)
+# Выведем магазин, в котором продается кот “Мурзик”
 SELECT
   s.shopname
 FROM
@@ -131,7 +126,7 @@ FROM
   JOIN cats c on s.id = c.shops_id
 WHERE
   c.name = 'Murzik';
-
+-- или
 SELECT
   s.shopname
 FROM
@@ -147,7 +142,7 @@ WHERE
       AND c.name = 'Murzik'
   );
 
-# 3.Вывести магазины, в которых НЕ продаются коты “Мурзик” и “Zuza”
+# Выведем магазины, в которых НЕ продаются коты “Мурзик” и “Zuza”
 SELECT
   s.shopname,
   GROUP_CONCAT(c.name)
@@ -177,7 +172,7 @@ HAVING
   # ord_datetime — дата и время заказа;
   # ord_an — ID анализа.
 
-  # 4.Вывести название и цену для всех анализов, которые продавались
+  # Выведем название и цену для всех анализов, которые продавались
   # 5 февраля 2020 и всю следующую неделю.
 SELECT
   DATE (O.ord_datetime) ord_date,

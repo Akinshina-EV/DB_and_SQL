@@ -1,5 +1,5 @@
-create database homework1;
-use homework1;
+create database db1;
+use db1;
 create table mobile_phone (
   id            int primary key not null,
   product_name  varchar(45) not null unique,
@@ -22,9 +22,10 @@ values
   (4, 'Galaxy S8', 'Samsung', 1, 41000),
   (5, 'P20 PRO', 'Huawei', 5, 36000);
 
-/* Выведите название, производителя и цену для товаров, количество которых
-превышает 2 (SQL - файл, скриншот, либо сам код) */
-use homework1;
+  /* Выведем название, производителя и цену для товаров, количество которых
+         превышает 2
+       */
+use db1;
 select
   manufacturer,
   price
@@ -32,8 +33,7 @@ from
   mobile_phone
 where
   product_count > 2;
-
--- Выведите весь ассортимент товаров марки “Samsung”
+-- Выведем весь ассортимент товаров марки “Samsung”
 select
   id,
   product_name,
@@ -44,11 +44,11 @@ from
   mobile_phone
 where
   manufacturer = 'Samsung';
-
-/* *** С помощью регулярных выражений найти:
-    - Товары, в которых есть упоминание "Iphone"
-    - "Samsung"
-    - Товары, в которых есть ЦИФРА "8" */
+  /* Найдем:
+      	- товары, в которых есть упоминание "Iphone"
+      	- товары, в которых есть упоминание "Samsung"
+      	- товары, в которых есть цифра "8"
+       */
 select
   id,
   product_name,
