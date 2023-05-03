@@ -1,11 +1,11 @@
 create database db1;
 use db1;
 create table mobile_phone (
-  id int primary key not null,
-  product_name varchar(45) not null unique,
-  manufacturer varchar(45) not null,
+  id            int primary key not null,
+  product_name  varchar(45) not null unique,
+  manufacturer  varchar(45) not null,
   product_count int not null,
-  price int not null
+  price         int not null
 );
 insert
   mobile_phone (
@@ -59,6 +59,7 @@ from
   mobile_phone
 where
   product_name like '%iphone%';
+
 select
   id,
   product_name,
@@ -69,6 +70,7 @@ from
   mobile_phone
 where
   manufacturer like '%samsung%';
+
 select
   id,
   product_name,
